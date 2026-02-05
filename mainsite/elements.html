@@ -6,7 +6,7 @@
 -->
 <html>
 	<head>
-		<title>Elements - Introspect by TEMPLATED</title>
+			<title>Examples - DevOps</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<link rel="stylesheet" href="assets/css/main.css" />
@@ -16,12 +16,13 @@
 		<!-- Header -->
 			<header id="header">
 				<div class="inner">
-					<a href="index.html" class="logo">introspect</a>
-					<nav id="nav">
-						<a href="index.html">Home</a>
-						<a href="generic.html">Generic</a>
-						<a href="elements.html">Elements</a>
-					</nav>
+					<a href="index.html" class="logo">neftali • DevOps</a>
+						<nav id="nav">
+							<a href="index.html">Home</a>
+							<a href="generic.html">Tools</a>
+							<a href="elements.html">Examples</a>
+							<a href="README.md">Docs</a>
+						</nav>
 				</div>
 			</header>
 			<a href="#menu" class="navPanelToggle"><span class="fa fa-bars"></span></a>
@@ -30,24 +31,76 @@
 			<section id="main">
 				<div class="inner">
 					<header class="major special">
-						<h1>Elements</h1>
-						<p>Lorem ipsum dolor sit amet nullam id egestas urna aliquam</p>
+						<h1>Examples</h1>
+						<p>Practical examples and minimal, copyable artifacts for common DevOps tasks.</p>
 					</header>
 
 					<!-- Text -->
 						<section>
-							<h3>Text</h3>
-							<p>This is <b>bold</b> and this is <strong>strong</strong>. This is <i>italic</i> and this is <em>emphasized</em>.
-							This is <sup>superscript</sup> text and this is <sub>subscript</sub> text.
-							This is <u>underlined</u> and this is code: <code>for (;;) { ... }</code>. Finally, <a href="#">this is a link</a>.</p>
-
+							<h3>Ansible (playbook)</h3>
+							<p>Simple playbook that installs nginx on Debian/Ubuntu hosts.</p>
+							<pre><code>---
+			- hosts: web
+			  become: true
+			  tasks:
+			    - name: Install nginx
+			      apt:
+			        name: nginx
+			        state: present
+			</code></pre>
+							<p>File: <a href="examples/ansible/playbook.yml">examples/ansible/playbook.yml</a></p>
 							<hr />
+							<h3>Terraform (AWS)</h3>
+							<p>Minimal Terraform to create an AWS EC2 instance (provider & resource).</p>
+							<pre><code>provider "aws" {
+			  region = "us-east-1"
+			}
 
-							<header>
-								<h3>Heading with a Subtitle</h3>
-								<p>Lorem ipsum dolor sit amet nullam id egestas urna aliquam</p>
-							</header>
-							<p>Nunc lacinia ante nunc ac lobortis. Interdum adipiscing gravida odio porttitor sem non mi integer non faucibus ornare mi ut ante amet placerat aliquet. Volutpat eu sed ante lacinia sapien lorem accumsan varius montes viverra nibh in adipiscing blandit tempus accumsan.</p>
+			resource "aws_instance" "example" {
+			  ami           = "ami-0c94855ba95c71c99"
+			  instance_type = "t3.micro"
+			}
+			</code></pre>
+							<p>File: <a href="examples/terraform/main.tf">examples/terraform/main.tf</a></p>
+							<hr />
+							<h3>Docker</h3>
+							<p>A minimal Dockerfile for a static site.</p>
+							<pre><code>FROM nginx:stable-alpine
+			COPY . /usr/share/nginx/html:ro
+			</code></pre>
+							<p>File: <a href="examples/docker/Dockerfile">examples/docker/Dockerfile</a></p>
+							<hr />
+							<h3>Kubernetes</h3>
+							<p>Deployment + Service snippet for the Docker image.</p>
+							<pre><code>apiVersion: apps/v1
+			kind: Deployment
+			metadata:
+			  name: web
+			spec:
+			  replicas: 2
+			  selector:
+			    matchLabels:
+			      app: web
+			  template:
+			    metadata:
+			      labels:
+			        app: web
+			    spec:
+			      containers:
+			      - name: web
+			        image: nginx:stable-alpine
+			        ports:
+			        - containerPort: 80
+			</code></pre>
+							<p>File: <a href="examples/k8s/deployment.yaml">examples/k8s/deployment.yaml</a></p>
+							<hr />
+							<h3>Scripting</h3>
+							<p>Simple deploy scripts in Bash and PowerShell are included.</p>
+							<ul>
+								<li><a href="scripts/deploy.sh">scripts/deploy.sh</a> (Bash)</li>
+								<li><a href="scripts/deploy.ps1">scripts/deploy.ps1</a> (PowerShell)</li>
+							</ul>
+						</section>
 							<header>
 								<h4>Heading with a Subtitle</h4>
 								<p>Lorem ipsum dolor sit amet nullam id egestas urna aliquam</p>
